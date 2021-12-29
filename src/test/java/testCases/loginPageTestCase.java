@@ -1,29 +1,17 @@
 package testCases;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import utils.ThreadLocalBaseDriver;
+import utils.BaseDriver;
 
-import java.time.Duration;
 
-public class loginPageTestCase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
-    @BeforeClass(alwaysRun = true)
-    public void setup(){
-        driver = ThreadLocalBaseDriver.getDriver();
-        driver.get("https://www.saucedemo.com/");
-        wait = new WebDriverWait(driver, 10);
-    }
+public class loginPageTestCase extends BaseDriver {
 
     @Test(dataProvider = "credentialsProvider")
-    public void loginTests(String username, String password, String expectedBehavior) throws InterruptedException {
+    public void loginTests(String username, String password, String expectedBehavior) {
         WebElement usernameInput = driver.findElement(By.xpath("//input[@id='user-name']"));
         usernameInput.clear();
         usernameInput.sendKeys(username);
@@ -64,13 +52,6 @@ public class loginPageTestCase {
                 {"performance_glitch_user", "secret_sauce", "delay"}
 
         };
-    }
-
-
-
-    @AfterClass(alwaysRun = true)
-    public void quitDriver(){
-        driver.quit();
     }
 
 }
