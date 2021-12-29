@@ -8,7 +8,7 @@ import org.testng.annotations.*;
 import utils.BaseDriver;
 
 
-public class loginPageTestCase extends BaseDriver {
+public class LoginPageTestCases extends BaseDriver {
 
     @Test(dataProvider = "credentialsProvider")
     public void loginTests(String username, String password, String expectedBehavior) {
