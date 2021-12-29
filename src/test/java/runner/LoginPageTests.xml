@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Login Page Tests" >
+    <test name="Credential Test with firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="testCases.LoginPageTestCases"/>
+        </classes>
+    </test>
+    <test name="Credential Test with chrome" >
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="testCases.LoginPageTestCases"/>
+        </classes>
+    </test>
+</suite>
