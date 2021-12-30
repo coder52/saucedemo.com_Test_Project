@@ -18,11 +18,9 @@ public class LoginPageTestCase extends BaseDriver {
     public void loginTests(String username, String password, String expectedBehavior) {
         LoginPagePOM pom = new LoginPagePOM(driver);
 
-        pom.usernameInput.clear();
-        pom.usernameInput.sendKeys(username);
-        pom.passwordInput.clear();
-        pom.passwordInput.sendKeys(password);
-        pom.loginButton.click();
+        clearTextBoxAndSendKeys(pom.usernameInput, username);
+        clearTextBoxAndSendKeys(pom.passwordInput, password);
+        waitAndClick(pom.loginButton);
         switch (expectedBehavior){
             case "success":
                 String text = pom.titleProducts.getText();
@@ -32,7 +30,7 @@ public class LoginPageTestCase extends BaseDriver {
             case "error":
                 String errText = pom.errorMessage.getText();
                 Assert.assertTrue(errText.contains("Sorry"));
-                pom.errorCancel.click();
+                waitAndClick(pom.errorCancel);
                 break;
             case "problem":
                 String problemText = pom.anyTextInProblemPage.getText();
