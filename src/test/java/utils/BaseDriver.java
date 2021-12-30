@@ -4,10 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 public class BaseDriver {
     protected WebDriver driver;
@@ -15,7 +12,7 @@ public class BaseDriver {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"browser"})
-    public void setup(String browser){
+    public void setup(@Optional("chrome") String browser){
         if(browser.equals("firefox")){
             ThreadLocalBaseDriver.setBrowser("firefox");}
         driver = ThreadLocalBaseDriver.getDriver();
@@ -25,7 +22,9 @@ public class BaseDriver {
 
     @AfterClass(alwaysRun = true)
     public void quitDriver(){
+
         ThreadLocalBaseDriver.quitDriver();
+
     }
 
     @DataProvider(name = "credentialsProvider")
