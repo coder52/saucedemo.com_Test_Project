@@ -9,7 +9,7 @@ import poms.LoginPagePOM;
 import utils.BaseDriver;
 
 
-public class LoginPageTestCase extends BaseDriver {
+public class LoginPageTestCases extends BaseDriver {
 
     /*
      * This test checks' login behavior for different usernames.
@@ -24,7 +24,7 @@ public class LoginPageTestCase extends BaseDriver {
         switch (expectedBehavior){
             case "success":
                 String text = pom.titleProducts.getText();
-                Assert.assertEquals(text, "PRODUCTS");
+                Assert.assertEquals(text.toLowerCase(), "products");
                 driver.navigate().back();
                 break;
             case "error":
@@ -40,7 +40,7 @@ public class LoginPageTestCase extends BaseDriver {
             case " delay":
                 wait.until(ExpectedConditions.presenceOfElementLocated(pom.titleProductsLocator));
                 String delayText = pom.titleProducts.getText();
-                Assert.assertEquals(delayText, "Products");
+                Assert.assertEquals(delayText.toLowerCase(), "products");
                 driver.navigate().back();
                 break;
         }
