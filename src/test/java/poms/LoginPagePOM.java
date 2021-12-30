@@ -34,6 +34,4 @@ public class LoginPagePOM {
     @FindBy(css = "#item_4_title_link~.inventory_item_desc")
     public WebElement anyTextInProblemPage;
 
-
-
 }
