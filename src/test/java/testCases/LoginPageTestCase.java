@@ -9,7 +9,7 @@ import poms.LoginPagePOM;
 import utils.BaseDriver;
 
 
-public class LoginPageTestCases extends BaseDriver {
+public class LoginPageTestCase extends BaseDriver {
 
     /*
      * This test checks' login behavior for different usernames.

@@ -5,13 +5,13 @@
     <test name="Credential Test with firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="testCases.LoginPageTestCases"/>
+            <class name="testCases.LoginPageTestCase"/>
         </classes>
     </test>
     <test name="Credential Test with chrome" >
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="testCases.LoginPageTestCases"/>
+            <class name="testCases.LoginPageTestCase"/>
         </classes>
     </test>
 </suite>
