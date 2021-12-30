@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Menu Button Tests">
+    <test name="Menu Button Tests with firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="testCases.MenuBtnTestCases"/>
+        </classes>
+    </test>
+    <test name="Menu Button Tests with chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="testCases.MenuBtnTestCases"/>
+        </classes>
+    </test>
+</suite>
