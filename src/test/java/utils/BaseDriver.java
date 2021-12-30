@@ -44,8 +44,12 @@ public class BaseDriver {
     }
 
     public void waitAndClick(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(element));
         element.click();
+    }
+
+    public String waitAndGetText(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
+        return element.getText();
     }
 }
