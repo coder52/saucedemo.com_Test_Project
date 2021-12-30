@@ -1,6 +1,8 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -35,5 +37,16 @@ public class BaseDriver {
                 {"performance_glitch_user", "secret_sauce", "delay"}
 
         };
+    }
+
+    public void clearTextBoxAndSendKeys(WebElement element, String keys){
+        element.clear();
+        element.sendKeys(keys);
+    }
+
+    public void waitAndClick(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.click();
     }
 }
