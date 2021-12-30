@@ -48,7 +48,7 @@ public class MenuBtnTestCases extends BaseDriver {
         waitAndClick(pom.menuButton);
         waitAndClick(pom.inventorySidebarLink);
         wait.until(ExpectedConditions.presenceOfElementLocated(pom.titleProductsLocator));
-        String delayText = pom.titleProducts.getText();
+        String delayText = waitAndGetText(pom.titleProducts);
         Assert.assertEquals(delayText.toLowerCase(), "products");
     }
 }
