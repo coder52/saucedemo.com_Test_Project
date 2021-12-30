@@ -40,7 +40,7 @@
                 <version>3.0.0-M1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/java/runner/LoginPageTests.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/java/runners/LoginPageTests.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
