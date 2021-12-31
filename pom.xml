@@ -42,6 +42,7 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/java/runners/LoginPageTests.xml</suiteXmlFile>
                         <suiteXmlFile>src/test/java/runners/MenuBtnTests.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/java/runners/ProductPageTests.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
