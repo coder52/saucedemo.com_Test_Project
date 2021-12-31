@@ -1,6 +1,5 @@
 package testCases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -8,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import poms.ProductPagePOM;
 import utils.BaseDriver;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,19 +30,19 @@ public class ProductsPageTestCases extends BaseDriver {
     @Test
     public void sortContainerTestCase() {
         for (int i=0;i<4;i++) {
-            Select options = new Select(driver.findElement(By.className("product_sort_container")));
-            driver.findElement(By.className("product_sort_container")).click();
+            Select options = new Select(pom.productSortContainer);
+            pom.productSortContainer.click();
             String optionText = options.getOptions().get(i).getText();
             options.selectByIndex(i);
             // collect item names in a list
-            List<WebElement> items = driver.findElements(By.className("inventory_item_name"));
+            List<WebElement> items = pom.inventoryItemNames;
             List<String> itemNames = new ArrayList<>();
             for(WebElement item:items){
                 String itemName = item.getText();
                 itemNames.add(itemName);
             }
             //collect item prices in a list
-            items = driver.findElements(By.className("inventory_item_price"));
+            items = pom.inventoryItemPrices;
             List<Double> itemPrices = new ArrayList<>();
             for(WebElement item:items){
                 Double itemPrice = getDoubleFromText(item.getText());
@@ -79,23 +77,22 @@ public class ProductsPageTestCases extends BaseDriver {
         List<WebElement> items;
         int expected = 3;
         for (int i=0;i<3;i++) {
-            items = driver.findElements(By.xpath("//button[text()='Add to cart']"));
+            items = pom.addToCartButtons;
             int idxOfItem = random.nextInt(items.size());
             items.get(idxOfItem).click();
         }
-        String itemCountText = driver.findElement(By.id("shopping_cart_container")).getText();
+        String itemCountText = pom.shoppingCartContainer.getText();
         int actual = Integer.parseInt(itemCountText);
         Assert.assertEquals(actual, expected);
     }
 
     @Test(dependsOnMethods = {"addToCartTestCase"})
     public void removeFromCartTestCase(){
-        List<WebElement> removeElements = driver.findElements(By.xpath("//button[text()='Remove']"));
-        int size = removeElements.size();
+        List<WebElement> removeElements = pom.removeButtons;
         for(WebElement element:removeElements){
             element.click();
         }
-        int sizeAfterRemove = driver.findElements(By.xpath("//button[text()='Remove']")).size();
+        int sizeAfterRemove = pom.removeButtons.size();
         Assert.assertEquals(0, sizeAfterRemove);
     }
 
@@ -104,12 +101,12 @@ public class ProductsPageTestCases extends BaseDriver {
         Random random = new Random();
         List<WebElement> elements;
         for (int i=0;i<3;i++) {
-            elements = driver.findElements(By.className("inventory_item_name"));
+            elements = pom.inventoryItemNames;
             int idxOfItem = random.nextInt(elements.size());
             WebElement element = elements.get(idxOfItem);
             String elementName = element.getText();
             element.click();
-            String elementNameInLink = driver.findElement(By.className("inventory_details_name")).getText();
+            String elementNameInLink = pom.inventoryItemNameInDetailsPage.getText();
             Assert.assertEquals(elementName,elementNameInLink);
             driver.navigate().back();
         }
