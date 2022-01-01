@@ -76,7 +76,7 @@ public class ProductsPageTestCases extends BaseDriver {
         Random random = new Random();
         List<WebElement> items;
         int expected = 3;
-        for (int i=0;i<3;i++) {
+        for (int i=0;i<expected;i++) {
             items = pom.addToCartButtons;
             int idxOfItem = random.nextInt(items.size());
             items.get(idxOfItem).click();
