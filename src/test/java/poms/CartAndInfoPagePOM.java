@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CartPagePOM extends DetailsPagePOM{
-    public CartPagePOM(WebDriver driver) {
+public class CartAndInfoPagePOM extends DetailsPagePOM{
+    public CartAndInfoPagePOM(WebDriver driver) {
         super(driver);
     }
 

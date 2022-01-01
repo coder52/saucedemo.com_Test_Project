@@ -4,17 +4,17 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import poms.CartPagePOM;
+import poms.CartAndInfoPagePOM;
 import utils.BaseDriver;
 
 import java.util.List;
 import java.util.Random;
 
-public class CartAndInformationPagesTestCases extends BaseDriver {
-    CartPagePOM pom;
+public class CartAndInfoPagesTestCases extends BaseDriver {
+    CartAndInfoPagePOM pom;
     @BeforeClass
     public void login(){
-        pom = new CartPagePOM(driver);
+        pom = new CartAndInfoPagePOM(driver);
         String username = "standard_user";
         String password = "secret_sauce";
         pom.usernameInput.clear();
