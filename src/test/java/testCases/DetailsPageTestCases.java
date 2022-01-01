@@ -56,7 +56,7 @@ public class DetailsPageTestCases extends BaseDriver {
     }
 
     @Test (dependsOnMethods = {"addToCartTestCase"})
-    public void removeFromCartTestCase(){
+    public void removeButtonInDetailsPageTestCase(){
         String itemCountText = pom.shoppingCartContainer.getText();
         int beforeClick = Integer.parseInt(itemCountText);// number of items in shopping cart before click on remove button
         pom.removeButtons.get(0).click();
