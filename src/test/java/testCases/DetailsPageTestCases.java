@@ -1,6 +1,5 @@
 package testCases;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -29,14 +28,13 @@ public class DetailsPageTestCases extends BaseDriver {
     public void clickRandomInventoryItemName(){
         Random random = new Random();
         List<WebElement> elements = pom.inventoryItemNames;
-        System.out.println(elements.size());
-        int idxOfItem = random.nextInt(elements.size()+1);
+        int idxOfItem = random.nextInt(elements.size());
         elements.get(idxOfItem).click();
     }
 
     @Test
     public void backToProductTestCase(){
-        driver.findElement(By.id("back-to-products")).click();
+        pom.backToProductsButton.click();
         String actualText = pom.titleProducts.getText();
         Assert.assertEquals(actualText, "PRODUCTS");
     }
