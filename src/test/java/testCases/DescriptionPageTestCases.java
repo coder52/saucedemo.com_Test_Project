@@ -25,14 +25,16 @@ public class DescriptionPageTestCases extends BaseDriver {
     }
 
     @BeforeClass(dependsOnMethods = {"login"})
-    public void selectSomeInventory(){
+    public void selectSomeInventory() {
         Random random = new Random();
         List<WebElement> items;
         int numberOfItems=3;
         for (int i=0;i<numberOfItems;i++) {
             items = pom.addToCartButtons;
-            int idxOfItem = random.nextInt(items.size());
-            items.get(idxOfItem).click();
+            if(items.size()>1) {
+                int idxOfItem = random.nextInt(items.size());
+                items.get(idxOfItem).click();
+            }
         }
     }
 
