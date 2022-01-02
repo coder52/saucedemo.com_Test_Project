@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import poms.DescriptionPagePOM;
 import utils.BaseDriver;
-
 import java.util.List;
 import java.util.Random;
 
@@ -48,12 +47,12 @@ public class DescriptionPageTestCases extends BaseDriver {
 
     }
 
-    @Test
+    @Test(priority = 1)
     public void ItemPriseVerificationTestCase(){
-        List<WebElement> selectedItems = driver.findElements(By.className("cart_item_label"));
+        List<WebElement> selectedItems = pom.cartItemLabels;
         for(int i=0;i<selectedItems.size();i++){
-            String itemName = driver.findElements(By.className("inventory_item_name")).get(i).getText();
-            String itemPriceInCart = driver.findElements(By.className("inventory_item_price")).get(i).getText();
+            String itemName = pom.inventoryItemNames.get(i).getText();
+            String itemPriceInCart = pom.inventoryItemPrices.get(i).getText();
             waitAndClick(pom.menuButton);
             waitAndClick(pom.inventorySidebarLink);
             // xpath in this locator starts from item name then finds item prise
@@ -65,34 +64,42 @@ public class DescriptionPageTestCases extends BaseDriver {
         }
     }
 
-    @Test
+    @Test(priority = 2)
     public void ItemTotalVerificationTestCase() {
-        List<WebElement> selectedItems = driver.findElements(By.className("cart_item_label"));
+        List<WebElement> selectedItems = pom.cartItemLabels;
         double sumOfPrices = 0.0d;
         for(int i=0;i<selectedItems.size();i++){
-            String strItemPrice = driver.findElements(By.className("inventory_item_price")).get(i).getText();
-            Double doubleItemPrice = getDoubleFromText(strItemPrice);
-            sumOfPrices+=doubleItemPrice;
+            Double itemPrice = getDoubleFromText(pom.inventoryItemPrices.get(i).getText());
+            sumOfPrices+=itemPrice;
         }
-        String strItemTotal = driver.findElement(By.className("summary_subtotal_label")).getText();
-        double itemTotal = getDoubleFromText(strItemTotal);
-        Assert.assertEquals(itemTotal, sumOfPrices,0.01);
+        double summaryTotal = getDoubleFromText(pom.summarySubTotal.getText());
+        Assert.assertEquals(summaryTotal, sumOfPrices,0.01);
     }
 
-    @Test
+    @Test(priority = 3)
     public void taxCalculationVerificationTestCase(){
-        double itemTotal = getDoubleFromText(driver.findElement(By.className("summary_subtotal_label")).getText());
-        double summaryTax = getDoubleFromText(driver.findElement(By.className("summary_tax_label")).getText());
-        Assert.assertEquals(summaryTax, itemTotal*0.08, 0.01);
+        double summaryTotal = getDoubleFromText(pom.summarySubTotal.getText());
+        double summaryTax = getDoubleFromText(pom.summaryTaxLabel.getText());
+        Assert.assertEquals(summaryTax, summaryTotal*0.08, 0.01);
     }
 
-    @Test
+    @Test(priority = 4)
     public void TotalVerificationTestCase(){
-        double itemTotal = getDoubleFromText(driver.findElement(By.className("summary_subtotal_label")).getText());
-        double summaryTax = getDoubleFromText(driver.findElement(By.className("summary_tax_label")).getText());
-        double total = getDoubleFromText(driver.findElement(By.className("summary_total_label")).getText());
-        Assert.assertEquals(total, itemTotal+summaryTax, 0.01);
+        double summaryTotal = getDoubleFromText(pom.summarySubTotal.getText());
+        double summaryTax = getDoubleFromText(pom.summaryTaxLabel.getText());
+        double total = getDoubleFromText(pom.total.getText());
+        Assert.assertEquals(total, summaryTotal+summaryTax, 0.01);
     }
 
+    @Test(priority = 5)
+    public void finishButtonTestCase(){
+        pom.finishButton.click();
+        String text = pom.thankYouMessage.getText();
+        Assert.assertTrue(text.toLowerCase().contains("thank you"));
+    }
 
+    @Test(priority = 6, dependsOnMethods = {"finishButtonTestCase"})
+    public void backHomeButtonTestCase(){
+        pom.backHomeButton.click();
+    }
 }
