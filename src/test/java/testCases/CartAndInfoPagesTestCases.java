@@ -85,5 +85,7 @@ public class CartAndInfoPagesTestCases extends BaseDriver {
         pom.lastNameBox.sendKeys("Musterman");
         pom.postalCodeBox.sendKeys("67000");
         pom.continueButton.click();
+        String cartDescLabel = pom.cartDescriptionLabel.getText();
+        Assert.assertEquals(cartDescLabel,"DESCRIPTION");
     }
 }
