@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Description Page Tests">
+    <test name="Description Page Tests with firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="testCases.DescriptionPageTestCases"/>
+        </classes>
+    </test>
+    <test name="Description Page Tests with chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="testCases.DescriptionPageTestCases"/>
+        </classes>
+    </test>
+</suite>
