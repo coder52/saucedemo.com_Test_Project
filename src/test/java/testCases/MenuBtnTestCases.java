@@ -21,7 +21,7 @@ public class MenuBtnTestCases extends BaseDriver {
         pom.loginButton.click();
     }
 
-    @Test
+    @Test(priority = 2)
     public void logoutTestCase(){
         waitAndClick(pom.menuButton);
         waitAndClick(pom.logoutSidebarLink);
@@ -31,7 +31,7 @@ public class MenuBtnTestCases extends BaseDriver {
         login();
     }
 
-    @Test
+    @Test(priority = 2)
     public void aboutTestCase(){
         waitAndClick(pom.menuButton);
         waitAndClick(pom.aboutSidebarLink);
@@ -42,7 +42,7 @@ public class MenuBtnTestCases extends BaseDriver {
         driver.navigate().back();
     }
 
-    @Test
+    @Test(priority = 2)
     public void inventoryTestCase(){ // All Items test case
         waitAndClick(pom.shoppingCartContainer);
         waitAndClick(pom.menuButton);

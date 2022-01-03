@@ -32,40 +32,42 @@ public class DetailsPageTestCases extends BaseDriver {
         elements.get(idxOfItem).click();
     }
 
-    @Test
+    @Test(priority = 4)
     public void backToProductTestCase(){
         pom.backToProductsButton.click();
         String actualText = pom.titleProducts.getText();
         Assert.assertEquals(actualText, "PRODUCTS");
     }
 
-    @Test
+    @Test(priority = 4)
     public void addToCartTestCase(){
         // Add part
         String itemCountText = pom.shoppingCartContainer.getText();
-        int beforeClick; // number of items in shopping cart before click on add to cart button
+        int beforeClick = 0; // number of items in shopping cart before click on add to cart button
         if(!(itemCountText.equals(""))) {
             beforeClick = Integer.parseInt(itemCountText);
-        }else {
-            beforeClick = 0 ;
         }
-        pom.addToCartButtons.get(0).click();
+        waitAndClick(pom.addToCartButtons.get(0));
         itemCountText = pom.shoppingCartContainer.getText();
-        int afterClick = Integer.parseInt(itemCountText);// number of items in shopping cart after click on add to cart button
+        int afterClick = 0;
+        if(!(itemCountText.equals(""))) {
+            afterClick = Integer.parseInt(itemCountText);// number of items in shopping cart after click on remove button
+        }
         Assert.assertEquals(afterClick-beforeClick,1);
     }
 
-    @Test (dependsOnMethods = {"addToCartTestCase"})
+    @Test (priority = 4, dependsOnMethods = {"addToCartTestCase"})
     public void removeButtonInDetailsPageTestCase(){
-        String itemCountText = pom.shoppingCartContainer.getText();
-        int beforeClick = Integer.parseInt(itemCountText);// number of items in shopping cart before click on remove button
-        pom.removeButtons.get(0).click();
+        String itemCountText = waitAndGetText(pom.shoppingCartContainer);
+        int beforeClick = 0;
+        if(!itemCountText.equals("")){
+            beforeClick = Integer.parseInt(itemCountText);// number of items in shopping cart before click on remove button
+        }
+        waitAndClick(pom.removeButtons.get(0));
         itemCountText = pom.shoppingCartContainer.getText();
-        int afterClick;
+        int afterClick = 0;
         if(!(itemCountText.equals(""))) {
             afterClick = Integer.parseInt(itemCountText);// number of items in shopping cart after click on remove button
-        } else {
-            afterClick = 0;
         }
         Assert.assertEquals(afterClick-beforeClick,-1);
     }

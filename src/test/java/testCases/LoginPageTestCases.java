@@ -11,7 +11,7 @@ public class LoginPageTestCases extends BaseDriver {
     /*
      * This test checks' login behavior for different usernames.
      */
-    @Test(dataProvider = "credentialsProvider")
+    @Test(priority = 1, dataProvider = "credentialsProvider")
     public void loginTests(String username, String password, String expectedBehavior) {
         LoginPagePOM pom = new LoginPagePOM(driver);
 
@@ -42,8 +42,4 @@ public class LoginPageTestCases extends BaseDriver {
                 break;
         }
     }
-
-
-
-
 }

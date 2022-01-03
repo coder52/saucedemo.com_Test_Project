@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,14 +22,12 @@ public class BaseDriver {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterTest(alwaysRun = true)
     public void quitDriver(){
-
-//        ThreadLocalBaseDriver.quitDriver();
-
+        ThreadLocalBaseDriver.quitDriver();
     }
 
-    @DataProvider(name = "credentialsProvider")
+   @DataProvider(name = "credentialsProvider")
     public Object[][] data() {
         return new Object[][]{
                 {"standard_user", "secret_sauce", "success"},

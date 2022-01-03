@@ -36,51 +36,54 @@ public class CartAndInfoPagesTestCases extends BaseDriver {
         }
     }
 
-    @BeforeClass(dependsOnMethods = {"login", "selectSomeInventory"})
-    public void clickShoppingCartContainer(){
-        pom.shoppingCartContainer.click();
-    }
-
-    @Test(priority = 1)
+    @Test(priority = 5)
     public void continueShoppingButtonTestCase(){
+        pom.shoppingCartContainer.click();
         pom.continueShoppingButton.click();
         String actualText = pom.titleProducts.getText();
         Assert.assertEquals(actualText, "PRODUCTS");
         driver.navigate().back();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 5)
     public void removeButtonInCartPageTestCase(){
+        pom.shoppingCartContainer.click();
         String itemCountText = pom.shoppingCartContainer.getText();
-        int beforeClick = Integer.parseInt(itemCountText);// number of items in shopping cart before click on remove button
-        pom.removeButtons.get(0).click();
+        int beforeClick = 0;
+        if(!itemCountText.equals("")){
+            beforeClick = Integer.parseInt(itemCountText);// number of items in shopping cart before click on remove button
+        }
+        waitAndClick(pom.removeButtons.get(0));
         itemCountText = pom.shoppingCartContainer.getText();
-        int afterClick;
+        int afterClick = 0;
         if(!(itemCountText.equals(""))) {
             afterClick = Integer.parseInt(itemCountText);// number of items in shopping cart after click on remove button
-        } else {
-            afterClick = 0;
         }
         Assert.assertEquals(afterClick-beforeClick,-1);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 5)
     public void checkoutButtonTestCase(){
-        pom.checkoutbutton.click();
+        pom.shoppingCartContainer.click();
+        waitAndClick(pom.checkoutbutton);
         String header = pom.headerContainer.getText();
         Assert.assertTrue(header.contains("YOUR INFORMATION"));
     }
     // here beginning "Your Information" Page Tests
-    @Test(priority = 4, dependsOnMethods = {"checkoutButtonTestCase"})
+    @Test(priority = 5)
     public void cancelButtonTestCase(){
+        pom.shoppingCartContainer.click();
+        waitAndClick(pom.checkoutbutton);
         pom.cancelButton.click();
         String cartDescLabel = pom.cartDescriptionLabel.getText();
         Assert.assertEquals(cartDescLabel,"DESCRIPTION");
         driver.navigate().back();
     }
 
-    @Test(priority = 5, dependsOnMethods = {"checkoutButtonTestCase"})
+    @Test(priority = 5)
     public void formAndContinueButtonTestCase(){
+        pom.shoppingCartContainer.click();
+        waitAndClick(pom.checkoutbutton);
         pom.firstNameBox.sendKeys("Muster");
         pom.lastNameBox.sendKeys("Musterman");
         pom.postalCodeBox.sendKeys("67000");

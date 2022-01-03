@@ -49,7 +49,7 @@ public class DescriptionPageTestCases extends BaseDriver {
 
     }
 
-    @Test(priority = 1)
+    @Test(priority = 6)
     public void ItemPriseVerificationTestCase(){
         List<WebElement> selectedItems = pom.cartItemLabels;
         for(int i=0;i<selectedItems.size();i++){
@@ -66,7 +66,7 @@ public class DescriptionPageTestCases extends BaseDriver {
         }
     }
 
-    @Test(priority = 2)
+    @Test(priority = 6)
     public void ItemTotalVerificationTestCase() {
         List<WebElement> selectedItems = pom.cartItemLabels;
         double sumOfPrices = 0.0d;
@@ -78,14 +78,14 @@ public class DescriptionPageTestCases extends BaseDriver {
         Assert.assertEquals(summaryTotal, sumOfPrices,0.01);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 6)
     public void taxCalculationVerificationTestCase(){
         double summaryTotal = getDoubleFromText(pom.summarySubTotal.getText());
         double summaryTax = getDoubleFromText(pom.summaryTaxLabel.getText());
         Assert.assertEquals(summaryTax, summaryTotal*0.08, 0.01);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 6)
     public void TotalVerificationTestCase(){
         double summaryTotal = getDoubleFromText(pom.summarySubTotal.getText());
         double summaryTax = getDoubleFromText(pom.summaryTaxLabel.getText());
@@ -93,14 +93,14 @@ public class DescriptionPageTestCases extends BaseDriver {
         Assert.assertEquals(total, summaryTotal+summaryTax, 0.01);
     }
 
-    @Test(priority = 5)
+    @Test(priority = 7)
     public void finishButtonTestCase(){
         pom.finishButton.click();
         String text = pom.thankYouMessage.getText();
         Assert.assertTrue(text.toLowerCase().contains("thank you"));
     }
 
-    @Test(priority = 6, dependsOnMethods = {"finishButtonTestCase"})
+    @Test(priority = 8, dependsOnMethods = {"finishButtonTestCase"})
     public void backHomeButtonTestCase(){
         pom.backHomeButton.click();
         String text = waitAndGetText(pom.titleProducts);

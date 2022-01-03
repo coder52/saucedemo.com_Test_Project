@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="saucedemo.com full parallel test" parallel="tests" thread-count="2">
+    <test name="saucedemo.com full test with firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="testCases.LoginPageTestCases"/>
+            <class name="testCases.MenuBtnTestCases"/>
+            <class name="testCases.ProductsPageTestCases"/>
+            <class name="testCases.DetailsPageTestCases"/>
+            <class name="testCases.CartAndInfoPagesTestCases"/>
+            <class name="testCases.DescriptionPageTestCases"/>
+        </classes>
+    </test>
+    <test name="saucedemo.com full test with chrome">
+        <parameter name="browser" value="chrome">
+            <classes>
+                <class name="testCases.LoginPageTestCases"/>
+                <class name="testCases.MenuBtnTestCases"/>
+                <class name="testCases.ProductsPageTestCases"/>
+                <class name="testCases.DetailsPageTestCases"/>
+                <class name="testCases.CartAndInfoPagesTestCases"/>
+                <class name="testCases.DescriptionPageTestCases"/>
+            </classes>
+        </parameter>
+    </test>
+</suite>

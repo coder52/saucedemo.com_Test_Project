@@ -27,7 +27,7 @@ public class ProductsPageTestCases extends BaseDriver {
         pom.loginButton.click();
     }
 
-    @Test
+    @Test(priority = 3)
     public void sortContainerTestCase() {
         for (int i=0;i<4;i++) {
             Select options = new Select(pom.productSortContainer);
@@ -71,7 +71,7 @@ public class ProductsPageTestCases extends BaseDriver {
         }
     }
 
-    @Test
+    @Test(priority = 3)
     public void addToCartTestCase(){
         Random random = new Random();
         List<WebElement> items;
@@ -86,7 +86,7 @@ public class ProductsPageTestCases extends BaseDriver {
         Assert.assertEquals(actual, expected);
     }
 
-    @Test(dependsOnMethods = {"addToCartTestCase"})
+    @Test(priority = 3, dependsOnMethods = {"addToCartTestCase"})
     public void removeFromCartTestCase(){
         List<WebElement> removeElements = pom.removeButtons;
         for(WebElement element:removeElements){
@@ -96,7 +96,7 @@ public class ProductsPageTestCases extends BaseDriver {
         Assert.assertEquals(0, sizeAfterRemove);
     }
 
-    @Test
+    @Test(priority = 3)
     public void inventoryItemNameLinkTestCase(){
         Random random = new Random();
         List<WebElement> elements;
